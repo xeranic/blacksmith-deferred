@@ -42,6 +42,10 @@ public abstract class AbstractPromise<T> implements Promise<T> {
 
 	@Override
 	public final synchronized Promise<T> done(DoneCallback<T> doneCallback) {
+		if (doneCallback == null) {
+			return this;
+		}
+
 		if (isPending()) {
 			if (doneCallbacks == null) {
 				doneCallbacks = new ArrayList<>();
@@ -55,6 +59,10 @@ public abstract class AbstractPromise<T> implements Promise<T> {
 
 	@Override
 	public final synchronized Promise<T> fail(FailCallback failCallback) {
+		if (failCallback == null) {
+			return this;
+		}
+
 		if (isPending()) {
 			if (failCallbacks == null) {
 				failCallbacks = new ArrayList<>();
@@ -67,7 +75,28 @@ public abstract class AbstractPromise<T> implements Promise<T> {
 	}
 
 	@Override
+	public final synchronized Promise<T> always(AlwaysCallback alwaysCallback) {
+		if (alwaysCallback == null) {
+			return this;
+		}
+
+		if (isPending()) {
+			if (alwaysCallbacks == null) {
+				alwaysCallbacks = new ArrayList<>();
+			}
+			alwaysCallbacks.add(alwaysCallback);
+		} else {
+			triggerAlways(alwaysCallback);
+		}
+		return this;
+	}
+
+	@Override
 	public final synchronized Promise<T> progress(ProgressCallback progressCallback) {
+		if (progressCallback == null) {
+			return this;
+		}
+
 		if (isPending()) {
 			if (progressCallbacks == null) {
 				progressCallbacks = new ArrayList();
@@ -141,4 +170,5 @@ public abstract class AbstractPromise<T> implements Promise<T> {
 			log.log(Level.SEVERE, "unexpected exception", t);
 		}
 	}
+
 }
