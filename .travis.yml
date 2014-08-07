@@ -1,8 +1,1 @@
 language: java
-deploy:
-  provider: releases
-  api_key:
-    secure: Dj8mrQPj5EQedLvsMWaYXNnLfGSlZMth7xHoRFSmlXBdrFlbRXY+2LvuxXi1CzqM18LwFHo//Vcy9jI2LkXE1KF7+TakvDUPC7zsRtHwuIrKnn4yyen0cR7Sv3MMR4grti1qrfoH+tLGMP2zTRO5NcOAEfLvLAn5g0BrCiFY+vY=
-  file: blacksmith-deferred-0.1.0-SNAPSHOT.jar
-  on:
-    repo: xeranic/blacksmith-deferred
