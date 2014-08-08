@@ -1,6 +1,6 @@
 *.class
 
-# Package Files
+# package Files
 *.jar
 *.war
 *.ear
@@ -8,7 +8,16 @@
 # virtual machine crash logs
 hs_err_pid*
 
+# eclipse
+.project
+.classpath
+.settings/
+
+# mac file system
+.DS_Store
+
 # gradle
 .gradle/
 build/
 /.nb-gradle/private/
+/bin
