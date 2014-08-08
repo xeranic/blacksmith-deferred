@@ -1,6 +1,7 @@
 package com.github.xeranic.blacksmith.deferred;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
@@ -24,6 +25,19 @@ public class DeferredObjectTest {
 		assertFalse(deferred.isPending());
 		assertFalse(deferred.isResolved());
 		assertTrue(deferred.isRejected());
+	}
+	
+	@Test
+	public void testDoneCallback() {
+		@SuppressWarnings("unchecked")
+		DoneCallback<String> doneCallback = mock(DoneCallback.class);
+		
+		Deferred<String> deferred = new DeferredObject<>();
+		deferred.promise().done(doneCallback);
+		
+		verify(doneCallback, never()).onDone((String) any());
+		deferred.resolve("yes");
+		verify(doneCallback).onDone("yes");
 	}
 	
 }
