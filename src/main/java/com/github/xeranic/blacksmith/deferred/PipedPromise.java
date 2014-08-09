@@ -1,6 +1,6 @@
 package com.github.xeranic.blacksmith.deferred;
 
-class PipedPromise<T, S> extends DeferredObject<S> {
+class PipedPromise<T, S> extends Deferred<S> {
 
 	public PipedPromise(Promise<T> promise, final DonePipe<T, S> donePipe,
 			final FailPipe<S> failPipe, final ProgressPipe<S> progressPipe) {

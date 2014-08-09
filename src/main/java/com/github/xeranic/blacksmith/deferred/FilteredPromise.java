@@ -1,6 +1,6 @@
 package com.github.xeranic.blacksmith.deferred;
 
-class FilteredPromise<T, S> extends DeferredObject<S> {
+class FilteredPromise<T, S> extends Deferred<S> {
 
 	public FilteredPromise(Promise<T> promise,
 			final DoneFilter<T, S> doneFilter, final FailFilter failFilter,

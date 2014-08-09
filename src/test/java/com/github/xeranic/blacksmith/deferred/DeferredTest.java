@@ -7,11 +7,11 @@ import org.junit.Test;
 
 import com.github.xeranic.blacksmith.deferred.Promise.State;
 
-public class DeferredObjectTest {
+public class DeferredTest {
 
 	@Test
 	public void testCreateResolved() {
-		Deferred<String> deferred = DeferredObject.createResolved("yes");
+		Deferred<String> deferred = Deferred.createResolved("yes");
 		assertEquals(State.RESOLVED, deferred.getState());
 		assertFalse(deferred.isPending());
 		assertFalse(deferred.isRejected());
@@ -20,7 +20,7 @@ public class DeferredObjectTest {
 	
 	@Test
 	public void testCreateRejected() {
-		Deferred<String> deferred = DeferredObject.createRejected(new RuntimeException());
+		Deferred<String> deferred = Deferred.createRejected(new RuntimeException());
 		assertEquals(State.REJECTED, deferred.getState());
 		assertFalse(deferred.isPending());
 		assertFalse(deferred.isResolved());
@@ -32,7 +32,7 @@ public class DeferredObjectTest {
 		@SuppressWarnings("unchecked")
 		DoneCallback<String> doneCallback = mock(DoneCallback.class);
 		
-		Deferred<String> deferred = new DeferredObject<>();
+		Deferred<String> deferred = new Deferred<>();
 		deferred.promise().done(doneCallback);
 		
 		verify(doneCallback, never()).onDone((String) any());
