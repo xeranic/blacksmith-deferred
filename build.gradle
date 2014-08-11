@@ -10,6 +10,8 @@ repositories {
 }
 
 dependencies {
+	compile 'com.google.gwt:gwt-user:2.6.1'
+
 	testCompile 'junit:junit:4.+'
 	testCompile 'org.mockito:mockito-all:1.9.+'
 }
